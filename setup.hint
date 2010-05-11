@@ -1,0 +1,4 @@
+category: Java
+requires: 
+sdesc: "Geronimo J2EE JMS implementation"
+ldesc: "Geronimo implementation of J2EE JMS API"

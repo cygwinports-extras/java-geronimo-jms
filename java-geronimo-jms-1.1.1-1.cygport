@@ -1,0 +1,19 @@
+SVN_URI="http://svn.apache.org/repos/asf/geronimo/specs"
+SVN_TAG="geronimo-jms_1.1_spec-${PV}"
+SVN_MODULE=${SVN_TAG%-*}
+inherit java svn
+
+src_compile() {
+	lndirs
+	cd ${B}
+	mkdir -p classes
+	cygjavac -d classes $(find src/main/java -name '*.java')
+	cygjar cf geronimo-jms_1.1_spec-${PV}.jar -C classes javax
+	cygjavadoc -d javadocs -sourcepath src/main/java -package javax.jms
+}
+
+src_install() {
+	cd ${B}
+	dojar *.jar
+	dojavadoc javadocs
+}
